@@ -88,7 +88,7 @@ if __name__ == '__main__':
         option = int(raw_input())
 
         if option == 1:
-            p = generate_big_prime(7)
+            p = generate_big_prime(5)
             q = generate_big_prime(4)
      
             public, private = generate_keypair(p, q)
@@ -97,13 +97,30 @@ if __name__ == '__main__':
             encrypted_msg = encrypt(private, message)
 
             print "A mensagem cifrada é: "
-            print ''.join(map(lambda x: str(x), encrypted_msg))
-            option = int(raw_input("2 - Decrypt"))
+            plain_msg = ''.join(map(lambda x: str(x), encrypted_msg))
+            print(plain_msg)
+            
+            print("2 - Decrypt")
+            print("3 - Descobrir pk conhecendo n e a mensagem por brute force")
+            option = int(raw_input())
 
             if option == 2:
                 print("Decifrando mensagem com chave pública {0}".format(public))
                 print("A mensagem é:")
                 print(decrypt(public, encrypted_msg))
+
+            if option == 3:
+                n = public[1]
+                i = 1
+                while True:
+                    brute_force_pk = (i, n)
+                    if decrypt(brute_force_pk, encrypted_msg) == message:
+                        print("PK descoberta por meio de brute force: {0}".format(brute_force_pk))
+                        break;
+                    else:
+                        i = i + 1
+
+
             else:
                 print("Digite uma opção valida")
         else:
