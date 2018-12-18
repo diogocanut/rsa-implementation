@@ -1,0 +1,4 @@
+Para executar pelo terminal do linux digite o comando: python rsa.py
+
+Digite 1 para encriptar uma mensagem e gerar chaves e em seguida digite a mensagem.
+Após encriptar a mensagem temos a opção de decifrar a mensagem (digite 2) ou descobrir a chave à partir de brute force (digite 3).
